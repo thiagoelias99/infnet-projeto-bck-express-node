@@ -18,5 +18,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/empregados", Validation.EmpregadoValidation.post, EmpregadoController.post);
+router.get("/empregados", EmpregadoController.getAll);
+router.delete("/empregados/:id", EmpregadoController.del);
+router.put("/empregados/:id", Validation.EmpregadoValidation.put, EmpregadoController.put);
 
 module.exports = router;
