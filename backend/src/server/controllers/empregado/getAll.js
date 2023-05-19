@@ -2,9 +2,9 @@ const { StatusCodes } = require("http-status-codes");
 
 const { EmpregadoService } = require("../../services");
 
-const post = (req, res, next) => {
+const post = async (req, res, next) => {
     try {
-        const result = EmpregadoService.listarTodos(req.body);
+        const result = await EmpregadoService.listarTodos(req.body);
 
         res.status(StatusCodes.OK).json(result);
     } catch (error) {

@@ -13,7 +13,7 @@ const cadastrar = async (empregado) => {
     }
 
     empregados.push({ id, ...empregado });
-    saveEmpregados(empregados)
+    await saveEmpregados(empregados)
     
     return id;
 };

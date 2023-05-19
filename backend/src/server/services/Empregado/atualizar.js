@@ -1,18 +1,22 @@
-const empregados = require("../../../databases/Empregado");
+const { readEmpregados, saveEmpregados } = require("../../../databases/Empregado");
 const { EmailError, IdError } = require("../../../errors");
 
-const atualizar = (id, empregado) => {
+const atualizar = async (id, empregado) => {
+    const empregados = await readEmpregados();
     const email = empregado.email;
+    const index = empregados.findIndex(empregado => empregado.id === id)
+
+    if (index < 0) {
+        throw new IdError;
+    }
+    empregados.splice(index, 1)
+
     if (empregados.some(empregado => empregado.email === email)) {
         throw new EmailError;
     }
 
-    const index = empregados.findIndex(empregado => empregado.id === id)
-    if (index < 0) {
-        throw new IdError;
-    }
-
-    empregados[index] = {id, ...empregado};
+    empregados.push({ id, ...empregado });
+    await saveEmpregados(empregados);
 };
 
 module.exports = atualizar;
