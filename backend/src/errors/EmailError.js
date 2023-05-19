@@ -1,5 +1,5 @@
 class EmailError extends Error {
-    constructor(message = "Email já cadastrado") {
+    constructor(message = "Email already registered") {
         super(message);
     }
 }

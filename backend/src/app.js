@@ -7,6 +7,5 @@ function startApp() {
 try {
     startApp();
 } catch (error) {
-    console.log("Fatal Error")
     console.log(error);
 }

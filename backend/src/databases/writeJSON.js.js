@@ -1,4 +1,5 @@
 const fs = require("fs")
+const { JsonError } = require("../errors")
 
 function writeJson(data, databaseName) {
     const filePath = __dirname
@@ -7,7 +8,7 @@ function writeJson(data, databaseName) {
     fs.promises
         .writeFile(`${filePath}\\${databaseName}.json`, JSON.stringify(data), encoding)
         .then((data) => console.log(data))
-        .catch(err => { throw new Error(err) })
+        .catch(err => { throw new JsonError(err) })
 }
 
 module.exports = writeJson
