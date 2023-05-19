@@ -3,11 +3,13 @@ export const AppContext = createContext();
 
 export default function AppProvider({ children }) {
     const [empregados, setEmpregados] = useState([]);
+    const [departamentos, setDepartamentos] = useState([]);
 
     const baseURL = process.env.BASE_URL || "http://localhost:3333";
 
     useEffect(() => {
         getEmpregados()
+        getDepartamentos()
     }, []);
 
     function postEmpregados(data) {
@@ -85,15 +87,51 @@ export default function AppProvider({ children }) {
             .catch(error => alert("Unable to connect to the server"))
     }
 
+    function postDepartamentos(data) {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        return fetch(baseURL + "/departamentos", options)
+            .then(res => {
+                if (res.status === 200 || res.status === 204) {
+                    return res.json();
+                }
+                res.json()
+                    .then(res => alert(res.message))
+                return new Error()
+            })
+            .catch(error => alert("Unable to connect to the server"))
+    }
+
+    function getDepartamentos() {
+        fetch(baseURL + "/departamentos")
+            .then((res) => {
+                if (res.status === 200 || res.status === 204) {
+                    res.json().then((json) => setDepartamentos(json))
+                } else {
+                    res.json()
+                        .then(res => alert(res.message))
+                }
+            })
+            .catch(error => alert("Unable to connect to the server"))
+    }
+
     return (
         <AppContext.Provider
             value={{
                 empregados,
-                setEmpregados,
                 postEmpregados,
                 getEmpregados,
                 deleteEmpregados,
-                updateEmpregados
+                updateEmpregados,
+                departamentos,
+                postDepartamentos,
+                getDepartamentos
             }}
         >
             {children}
