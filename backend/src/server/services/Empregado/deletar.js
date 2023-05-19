@@ -8,9 +8,7 @@ const deletar = (id) => {
         throw new IdError;
     }
 
-    console.log("🚀 ~ file: deletar.js:12 ~ deletar ~ empregados:", empregados)
     empregados.splice(index, 1);
-    console.log("🚀 ~ file: deletar.js:12 ~ deletar ~ empregados:", empregados)
 };
 
 module.exports = deletar;

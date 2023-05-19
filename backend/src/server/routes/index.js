@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 router.post("/empregados", Validation.EmpregadoValidation.post, EmpregadoController.post);
 router.get("/empregados", EmpregadoController.getAll);
-router.delete("/empregados/:id", EmpregadoController.del);
-router.put("/empregados/:id", Validation.EmpregadoValidation.put, EmpregadoController.put);
+router.delete("/empregados/:id",Validation.ComunValidation.reqParams, EmpregadoController.del);
+router.put("/empregados/:id",Validation.ComunValidation.reqParams, Validation.EmpregadoValidation.put, EmpregadoController.put);
 
 module.exports = router;
