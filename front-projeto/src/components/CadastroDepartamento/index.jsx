@@ -23,8 +23,8 @@ export function CadastroDepartamento() {
   }
 
   function handleFakerButton() {
-    const nomeFaker = faker.person.firstName()
-    const cidadeFaker = faker.person.lastName()
+    const nomeFaker = faker.commerce.department()
+    const cidadeFaker = faker.location.city()
 
     setNome(nomeFaker)
     setCidade(cidadeFaker)
