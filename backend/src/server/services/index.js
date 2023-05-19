@@ -3,5 +3,5 @@
 const EmpregadoService = require("./Empregado");
 
 module.exports = {
-    EmpregadoService
+    EmpregadoService,
 };

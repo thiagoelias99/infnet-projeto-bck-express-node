@@ -1,16 +1,20 @@
 const uuid = require("uuid");
 
-const empregados = require("../../../databases/Empregado");
+const { saveEmpregados, readEmpregados } = require("../../../databases/Empregado");
 const { EmailError } = require("../../../errors");
 
-const cadastrar = (empregado) => {
+const cadastrar = async (empregado) => {
     const id = uuid.v4();
     const email = empregado.email;
+    const empregados = await readEmpregados();
 
     if (empregados.some(empregado => empregado.email === email)) {
         throw new EmailError;
     }
+
     empregados.push({ id, ...empregado });
+    saveEmpregados(empregados)
+    
     return id;
 };
 
