@@ -20,20 +20,30 @@ export default function AppProvider({ children }) {
         };
 
         return fetch(baseURL + "/empregados", options)
-            .then(response => {
-                if (response.status === 200 || response.status === 201) {
-                    return response.json();
+            .then(res => {
+                if (res.status === 200 || res.status === 204) {
+                    return res.json();
                 }
-                response.json()
-                    .then(response => alert(response.message))
+                res.json()
+                    .then(res => alert(res.message))
                 return new Error()
             })
+            .catch(error => alert("Unable to connect to the server"))
     }
 
     function getEmpregados() {
+
         fetch(baseURL + "/empregados")
-            .then((res) => res.json())
-            .then((json) => setEmpregados(json))
+            .then((res) => {
+                if (res.status === 200 || res.status === 204) {
+                    res.json().then((json) => setEmpregados(json))
+                } else {
+                    res.json()
+                        .then(res => alert(res.message))
+                }
+            })
+            .catch(error => alert("Unable to connect to the server"))
+
     }
 
     function updateEmpregados(id, data) {
@@ -54,6 +64,7 @@ export default function AppProvider({ children }) {
                     .then(response => alert(response.message))
                 return new Error()
             })
+            .catch(error => alert("Unable to connect to the server"))
     }
 
     function deleteEmpregados(id) {
@@ -73,6 +84,7 @@ export default function AppProvider({ children }) {
                     .then(response => alert(response.message))
                 return new Error()
             })
+            .catch(error => alert("Unable to connect to the server"))
     }
 
     return (
