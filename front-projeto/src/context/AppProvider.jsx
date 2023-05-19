@@ -8,7 +8,7 @@ export default function AppProvider({ children }) {
 
     useEffect(() => {
         getEmpregados()
-    }, [empregados]);
+    }, []);
 
     function postEmpregados(data) {
         const options = {
@@ -32,7 +32,6 @@ export default function AppProvider({ children }) {
     }
 
     function getEmpregados() {
-
         fetch(baseURL + "/empregados")
             .then((res) => {
                 if (res.status === 200 || res.status === 204) {
@@ -43,7 +42,6 @@ export default function AppProvider({ children }) {
                 }
             })
             .catch(error => alert("Unable to connect to the server"))
-
     }
 
     function updateEmpregados(id, data) {

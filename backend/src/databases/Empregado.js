@@ -7,8 +7,8 @@ const readEmpregados = async () => {
     return await readJson("Empregados")
 }
 
-const saveEmpregados = (empregados) =>{
+const saveEmpregados = (empregados) => {
     writeJson(empregados, "Empregados")
 }
 
-module.exports = {empregados, readEmpregados, saveEmpregados}
+module.exports = { empregados, readEmpregados, saveEmpregados }

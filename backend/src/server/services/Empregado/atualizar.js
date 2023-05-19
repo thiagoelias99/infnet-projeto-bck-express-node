@@ -9,13 +9,15 @@ const atualizar = async (id, empregado) => {
     if (index < 0) {
         throw new IdError;
     }
-    empregados.splice(index, 1)
 
-    if (empregados.some(empregado => empregado.email === email)) {
+    empregadosBck = empregados
+    empregadosBck.splice(index, 1)
+
+    if (empregadosBck.some(empregado => empregado.email === email)) {
         throw new EmailError;
     }
 
-    empregados.push({ id, ...empregado });
+    empregados[index] = { id, ...empregado }
     await saveEmpregados(empregados);
 };
 

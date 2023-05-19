@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan")
 
 const router = require("./routes");
 const {
@@ -14,6 +15,9 @@ server.use(cors());
 
 // Configuração do middleware "parser de body"
 server.use(express.json());
+
+// Configuração do middleware de log
+server.use(morgan('dev'));
 
 // Configuração de rotas
 server.use(router);

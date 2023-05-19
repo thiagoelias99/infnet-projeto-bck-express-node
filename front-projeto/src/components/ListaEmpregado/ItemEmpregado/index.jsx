@@ -8,7 +8,6 @@ import React, { useContext, useState } from 'react'
 import { AppContext } from '../../../context/AppProvider';
 
 export function ItemEmpregado({ props }) {
-  const baseURL = process.env.BASE_URL || "http://localhost:3333";
   const [nome, setNome] = useState(props.nome);
   const [email, setEmail] = useState(props.email);
   const [idade, setIdade] = useState(props.idade);
@@ -17,6 +16,7 @@ export function ItemEmpregado({ props }) {
 
   function handleDelete() {
     deleteEmpregados(props.id)
+    getEmpregados()
     getEmpregados()
   }
 
@@ -52,7 +52,7 @@ export function ItemEmpregado({ props }) {
         <>
           <Typography variant='h6'>{nome}</Typography>
           <Typography variant='subtitle2'>{email}</Typography>
-          <Typography variant='subtitle2'>{idade}</Typography>
+          <Typography variant='subtitle2'>{idade} {idade == 1 ? "ano" : "anos"}</Typography>
           <Box>
             <IconButton onClick={handleUpdate}>
               <EditIcon color='action' />

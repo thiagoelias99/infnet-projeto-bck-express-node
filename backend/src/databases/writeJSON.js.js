@@ -7,7 +7,6 @@ function writeJson(data, databaseName) {
 
     fs.promises
         .writeFile(`${filePath}\\${databaseName}.json`, JSON.stringify(data), encoding)
-        .then((data) => console.log(data))
         .catch(err => { throw new JsonError(err) })
 }
 

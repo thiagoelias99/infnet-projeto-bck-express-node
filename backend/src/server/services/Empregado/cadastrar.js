@@ -12,7 +12,7 @@ const cadastrar = async (empregado) => {
         throw new EmailError;
     }
 
-    empregados.push({ id, ...empregado });
+    empregados.unshift({ id, ...empregado });
     await saveEmpregados(empregados)
     
     return id;
