@@ -11,6 +11,7 @@ export function ItemEmpregado({ props }) {
   const [nome, setNome] = useState(props.nome);
   const [email, setEmail] = useState(props.email);
   const [idade, setIdade] = useState(props.idade);
+  const [departamento, setDepartamento] = useState(props.departamento);
   const [isUpdate, setIsUpdate] = useState(false)
   const { getEmpregados, deleteEmpregados, updateEmpregados } = useContext(AppContext)
 
@@ -24,15 +25,30 @@ export function ItemEmpregado({ props }) {
     setIsUpdate(!isUpdate)
   }
 
-  function handleConfirm() {
-    handleUpdate()
+  function handleCancel() {
+    setNome(props.nome)
+    setEmail(props.email)
+    setIdade(props.idade)
+    setDepartamento(props.departamento)
+
+    setIsUpdate(!isUpdate)
+  }
+
+  async function handleConfirm() {
     const data = {
       nome,
       email,
-      idade
+      idade,
+      departamento
     };
-    updateEmpregados(props.id, data)
-    getEmpregados()
+    const result = await updateEmpregados(props.id, data)
+    if (result instanceof Error) {
+    } else {
+      console.log("aqui")
+      handleUpdate()
+      getEmpregados()
+      getEmpregados()
+    }
   }
 
   return (
@@ -51,6 +67,7 @@ export function ItemEmpregado({ props }) {
       {!isUpdate &&
         <>
           <Typography variant='h6'>{nome}</Typography>
+          <Typography variant='subtitle1'>{departamento}</Typography>
           <Typography variant='subtitle2'>{email}</Typography>
           <Typography variant='subtitle2'>{idade} {idade == 1 ? "ano" : "anos"}</Typography>
           <Box>
@@ -74,6 +91,13 @@ export function ItemEmpregado({ props }) {
             onChange={(e) => setNome(e.target.value)}
           />
           <TextField
+            id="departamento"
+            label="Departamento"
+            variant="outlined"
+            value={departamento}
+            onChange={(e) => setDepartamento(e.target.value)}
+          />
+          <TextField
             id="email"
             label="Email"
             variant="outlined"
@@ -92,7 +116,7 @@ export function ItemEmpregado({ props }) {
             <IconButton onClick={handleConfirm}>
               <CheckIcon color="success" />
             </IconButton>
-            <IconButton onClick={handleUpdate}>
+            <IconButton onClick={handleCancel}>
               <CancelIcon color="error" />
             </IconButton>
           </Box>

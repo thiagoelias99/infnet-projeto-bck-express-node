@@ -55,16 +55,18 @@ export default function AppProvider({ children }) {
             body: JSON.stringify(data)
         };
 
-        fetch(`${baseURL}/empregados/${id}`, options)
-            .then(response => {
-                if (response.status === 200 || response.status === 204) {
-                    return
-                }
-                response.json()
-                    .then(response => alert(response.message))
-                return new Error()
-            })
-            .catch(error => alert("Unable to connect to the server"))
+        return (
+            fetch(`${baseURL}/empregados/${id}`, options)
+                .then(response => {
+                    if (response.status === 200 || response.status === 204) {
+                        return true
+                    }
+                    response.json()
+                        .then(response => alert(response.message))
+                    return new Error()
+                })
+                .catch(error => alert("Unable to connect to the server"))
+        )
     }
 
     function deleteEmpregados(id) {
