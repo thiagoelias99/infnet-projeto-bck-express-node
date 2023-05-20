@@ -5,7 +5,7 @@ const Empregado = Joi.object({
     email: Joi.string().email().required(),
     salario: Joi.number().min(1).required(),
     idade: Joi.number().min(1).required(),
-    departamento: Joi.string(),
+    departamento: Joi.string().default(""),
 });
 
 module.exports = Empregado;

@@ -114,7 +114,9 @@ export default function AppProvider({ children }) {
         fetch(baseURL + "/departamentos")
             .then((res) => {
                 if (res.status === 200 || res.status === 204) {
-                    res.json().then((json) => setDepartamentos(json))
+                    res.json().then((json) => {
+                        setDepartamentos(json)
+                    })
                 } else {
                     res.json()
                         .then(res => alert(res.message))

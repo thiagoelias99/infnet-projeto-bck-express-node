@@ -17,7 +17,6 @@ export function ListaDepartamento() {
       flexWrap="wrap"
       gap={1}
       marginX={1}
-      marginY={1}
       padding={1}
     >
       {

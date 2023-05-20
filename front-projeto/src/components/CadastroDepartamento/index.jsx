@@ -1,4 +1,4 @@
-import { Box, Button, Paper, TextField } from '@mui/material'
+import { Box, Button, Paper, TextField, Typography } from '@mui/material'
 import React, { useState, useContext } from 'react'
 import { AppContext } from '../../context/AppProvider';
 import { fakerPT_BR as faker } from '@faker-js/faker';
@@ -39,9 +39,10 @@ export function CadastroDepartamento() {
       alignItems='center'
       gap={1}
       marginX={1}
-      marginY={1}
+      marginTop={1}
       padding={1}
     >
+      <Typography variant='h4'>Departamentos</Typography>
       <Box
         width="100%"
         display='flex'
@@ -80,7 +81,7 @@ export function CadastroDepartamento() {
           variant='contained'
           color='info'
           onClick={handleFakerButton}
-        >Faker</Button>
+        >Aleatório</Button>
       </Box>
     </Box>
   )

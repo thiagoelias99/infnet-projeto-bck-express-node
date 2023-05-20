@@ -15,7 +15,7 @@ const deletar = async (id) => {
     for (const empregado of empregados) {
         if (empregado.departamento) {
             if (empregado.departamento === nomeDepartamento) {
-                empregado.departamento = null
+                empregado.departamento = ""
             }
         }
     }

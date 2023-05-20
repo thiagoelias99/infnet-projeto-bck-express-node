@@ -5,8 +5,8 @@ const readDepartamentos = async () => {
     return await readJson("Departamentos")
 }
 
-const saveDepartamentos = (departamentos) => {
-    writeJson(departamentos, "Departamentos")
+const saveDepartamentos = async (departamentos) => {
+    await writeJson(departamentos, "Departamentos")
 }
 
 module.exports = { readDepartamentos, saveDepartamentos }
