@@ -121,6 +121,47 @@ export default function AppProvider({ children }) {
             .catch(error => alert("Unable to connect to the server"))
     }
 
+    function updateDepartamentos(id, data) {
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        fetch(`${baseURL}/departamentos/${id}`, options)
+            .then(response => {
+                if (response.status === 200 || response.status === 204) {
+                    return
+                }
+                response.json()
+                    .then(response => alert(response.message))
+                return new Error()
+            })
+            .catch(error => alert("Unable to connect to the server"))
+    }
+
+    function deleteDepartamentos(id) {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        fetch(`${baseURL}/departamentos/${id}`, options)
+            .then(response => {
+                if (response.status === 200 || response.status === 204) {
+                    return
+                }
+                response.json()
+                    .then(response => alert(response.message))
+                return new Error()
+            })
+            .catch(error => alert("Unable to connect to the server"))
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -131,7 +172,9 @@ export default function AppProvider({ children }) {
                 updateEmpregados,
                 departamentos,
                 postDepartamentos,
-                getDepartamentos
+                getDepartamentos,
+                updateDepartamentos,
+                deleteDepartamentos
             }}
         >
             {children}
