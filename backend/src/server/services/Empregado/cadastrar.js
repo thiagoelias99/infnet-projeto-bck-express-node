@@ -2,7 +2,7 @@ const uuid = require("uuid");
 
 const { saveEmpregados, readEmpregados } = require("../../../databases/Empregado");
 const { readDepartamentos } = require("../../../databases/Departamento");
-const { EmailError } = require("../../../errors");
+const { EmailError, DepartamentoError } = require("../../../errors");
 
 const cadastrar = async (empregado) => {
     const id = uuid.v4();

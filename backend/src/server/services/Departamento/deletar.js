@@ -12,9 +12,11 @@ const deletar = async (id) => {
 
     const nomeDepartamento = departamentos[index].nome
     const empregados = await readEmpregados()
-    for (const iterator of empregados) {
-        if (empregados[iterator].departameto === nomeDepartamento) {
-            empregados[iterator].departameto === ""
+    for (const empregado of empregados) {
+        if (empregado.departamento) {
+            if (empregado.departamento === nomeDepartamento) {
+                empregado.departamento = null
+            }
         }
     }
 

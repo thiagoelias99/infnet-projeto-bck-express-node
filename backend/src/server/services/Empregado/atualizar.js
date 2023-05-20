@@ -14,8 +14,6 @@ const atualizar = async (id, empregado) => {
     }
 
     empregadosBck.splice(index, 1)
-    console.log("empregados")
-    console.log(empregados)
 
     if (empregadosBck.some(empregado => empregado.email === email)) {
         throw new EmailError;
@@ -31,8 +29,6 @@ const atualizar = async (id, empregado) => {
     }
 
     empregados[index] = { id, ...empregado }
-    console.log("2");
-    console.log(empregados);
     await saveEmpregados(empregados);
 };
 
