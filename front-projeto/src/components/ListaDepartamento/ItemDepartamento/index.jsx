@@ -11,12 +11,13 @@ export function ItemDepartamento({ props }) {
   const [nome, setNome] = useState(props.nome);
   const [cidade, setCidade] = useState(props.cidade);
   const [isUpdate, setIsUpdate] = useState(false)
-  const { getDepartamentos, deleteDepartamentos, updateDepartamentos } = useContext(AppContext)
+  const {deleteDepartamentos, updateDepartamentos, getDepartamentos } = useContext(AppContext)
 
   function handleDelete() {
     deleteDepartamentos(props.id)
     getDepartamentos()
     getDepartamentos()
+
   }
 
   function handleUpdate() {

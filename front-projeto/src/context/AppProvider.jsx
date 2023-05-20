@@ -164,6 +164,11 @@ export default function AppProvider({ children }) {
             .catch(error => alert("Unable to connect to the server"))
     }
 
+    async function getAll() {
+        await getDepartamentos()
+        await getEmpregados()
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -176,7 +181,8 @@ export default function AppProvider({ children }) {
                 postDepartamentos,
                 getDepartamentos,
                 updateDepartamentos,
-                deleteDepartamentos
+                deleteDepartamentos,
+                getAll
             }}
         >
             {children}

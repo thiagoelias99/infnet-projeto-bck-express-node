@@ -12,6 +12,7 @@ export function ItemEmpregado({ props }) {
   const [email, setEmail] = useState(props.email);
   const [idade, setIdade] = useState(props.idade);
   const [departamento, setDepartamento] = useState(props.departamento);
+  const [salario, setSalario] = useState(props.salario);
   const [isUpdate, setIsUpdate] = useState(false)
   const { getEmpregados, deleteEmpregados, updateEmpregados } = useContext(AppContext)
 
@@ -29,6 +30,7 @@ export function ItemEmpregado({ props }) {
     setNome(props.nome)
     setEmail(props.email)
     setIdade(props.idade)
+    setSalario(props.salario)
     setDepartamento(props.departamento)
 
     setIsUpdate(!isUpdate)
@@ -39,7 +41,8 @@ export function ItemEmpregado({ props }) {
       nome,
       email,
       idade,
-      departamento
+      departamento,
+      salario
     };
     const result = await updateEmpregados(props.id, data)
     if (result instanceof Error) {
@@ -68,6 +71,7 @@ export function ItemEmpregado({ props }) {
         <>
           <Typography variant='h6'>{nome}</Typography>
           <Typography variant='subtitle1'>{departamento}</Typography>
+          <Typography variant='subtitle2'>R$ {salario}</Typography>
           <Typography variant='subtitle2'>{email}</Typography>
           <Typography variant='subtitle2'>{idade} {idade == 1 ? "ano" : "anos"}</Typography>
           <Box>
@@ -96,6 +100,14 @@ export function ItemEmpregado({ props }) {
             variant="outlined"
             value={departamento}
             onChange={(e) => setDepartamento(e.target.value)}
+          />
+          <TextField
+            id="salario"
+            type='number'
+            label="Salário"
+            variant="outlined"
+            value={salario}
+            onChange={(e) => setSalario(e.target.value)}
           />
           <TextField
             id="email"

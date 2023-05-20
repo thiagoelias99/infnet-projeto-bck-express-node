@@ -7,13 +7,15 @@ export function CadastroEmpregado() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [idade, setIdade] = useState("");
+  const [salario, setSalario] = useState("");
   const { postEmpregados, getEmpregados } = useContext(AppContext)
 
   async function handleAddButton() {
     const data = {
       nome,
       email,
-      idade
+      idade,
+      salario
     };
     const result = await postEmpregados(data)
     if (result instanceof Error) {
@@ -21,6 +23,7 @@ export function CadastroEmpregado() {
       setNome("")
       setEmail("")
       setIdade("")
+      setSalario("")
     }
     getEmpregados()
   }
@@ -28,6 +31,7 @@ export function CadastroEmpregado() {
   function handleFakerButton() {
     const nomeFaker = faker.person.firstName()
     const sobreNomeFaker = faker.person.lastName()
+    const salarioFaker = faker.commerce.price({ min: 1000.00, max: 16000.00 })
     const emailFaker = faker.internet.email(
       { firstName: nomeFaker, lastName: sobreNomeFaker }
     )
@@ -36,6 +40,7 @@ export function CadastroEmpregado() {
     setNome(`${nomeFaker} ${sobreNomeFaker}`)
     setEmail(emailFaker)
     setIdade(idadeFaker)
+    setSalario(salarioFaker)
   }
 
   return (
@@ -66,6 +71,17 @@ export function CadastroEmpregado() {
           onChange={(e) => setNome(e.target.value)}
           sx={{
             width: "220px"
+          }}
+        />
+        <TextField
+          id="salario"
+          label="Salário"
+          type='number'
+          variant="outlined"
+          value={salario}
+          onChange={(e) => setSalario(e.target.value)}
+          sx={{
+            width: "150px"
           }}
         />
         <TextField
