@@ -12,5 +12,5 @@ router.route(path)
 router.route(`${path}/:id`)
     .all(Validation.ComunValidation.reqParams)
     .put(Validation.EmpregadoValidation.put, EmpregadoController.put)
-    .delete(Validation.ComunValidation.reqParams, EmpregadoController.del);
+    .delete(EmpregadoController.del);
 module.exports = router;

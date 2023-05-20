@@ -12,5 +12,5 @@ router.route(path)
 router.route(`${path}/:id`)
     .all(Validation.ComunValidation.reqParams)
     .put(Validation.DepartamentoValidation.put, DepartamentoController.put)
-    .delete(Validation.ComunValidation.reqParams, DepartamentoController.del);
+    .delete(DepartamentoController.del);
 module.exports = router;

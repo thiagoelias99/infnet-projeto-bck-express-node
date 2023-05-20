@@ -13,7 +13,7 @@
 
 #### **2. Desenvolver uma REST API com Express**
 - O aluno criou pelo menos quatro rotas em sua aplicação?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/tree/main/backend/src/server/routes>
+    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
 - O aluno utilizou os verbos e status HTTP de forma correta?	
     - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
     - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/controllers/empregado/post.js>
