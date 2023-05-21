@@ -30,7 +30,7 @@ npm start
 
 ## **Rotas**
 - <http://localhost:3333/>
-    - **GET** -> Página Inicial
+    - **GET** -> Rota Inicial
 - <http://localhost:3333/empregados>
     - **GET** -> Retorna todos empregados.
     - **POST** -> Adiciona um empregado.
@@ -74,4 +74,4 @@ npm start
         }
         ```
 - <http://localhost:3333/*>
-    - Qualquer Método -> Pagina 404
+    - Qualquer Método -> Retorno rota inválida
